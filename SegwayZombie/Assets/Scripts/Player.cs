@@ -28,7 +28,7 @@ public class Player : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		rb.MovePosition (transform.position + MoveDirection.normalized * speed * Time.deltaTime);
+		rb.velocity = MoveDirection.normalized * speed;
 
 		LookDirection = new Vector3 (LookDirection.x, 0f, LookDirection.z);
 		rb.MoveRotation (Quaternion.Lerp(transform.rotation, Quaternion.LookRotation (LookDirection), 10f * Time.deltaTime));
