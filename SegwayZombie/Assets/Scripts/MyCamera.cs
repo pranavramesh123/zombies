@@ -14,7 +14,7 @@ public class MyCamera : MonoBehaviour {
 		offset = new Vector3 (0f, 15f, -22f);
 	}
 
-	void FixedUpdate()
+	void LateUpdate()
 	{
 		if (player != null)
 			targetCamPos = new Vector3(player.transform.position.x, 0f, player.transform.position.z) + offset;
