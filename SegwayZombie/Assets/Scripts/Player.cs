@@ -28,7 +28,6 @@ public class Player : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		MoveDirection.Set (MoveDirection.x, 0f, MoveDirection.z);
 		rb.MovePosition (transform.position + MoveDirection.normalized * speed * Time.deltaTime);
 
 		LookDirection = new Vector3 (LookDirection.x, 0f, LookDirection.z);
@@ -49,7 +48,6 @@ public class Player : MonoBehaviour {
 		if (MousePosition.Instance != null && MousePosition.Instance.isValid)
 			LookDirection = MousePosition.Instance.mousePosition - transform.position;
 
-		rb.MoveRotation (Quaternion.LookRotation (LookDirection));
 	}
 
 	void WeaponRotation()
