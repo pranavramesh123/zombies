@@ -15,7 +15,7 @@ public class Health : MonoBehaviour {
 	[SerializeField] GameObject gameOverText;
 	[SerializeField] GameObject damageScreen;
 
-	bool dead = false;
+	[HideInInspector] public bool dead = false;
 
 	public void TakeDamage(int DamageAmount)
 	{
@@ -43,6 +43,9 @@ public class Health : MonoBehaviour {
 
 	public void BuyHealth()
 	{
+		if (dead)
+			return;
+
 		if (GameMaster.Instance.score >= 1000 && currentHealth != 100)
 		{
 			UIManager.Instance.ScoreChange (-1000);

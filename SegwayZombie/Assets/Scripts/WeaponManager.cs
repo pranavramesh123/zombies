@@ -20,6 +20,9 @@ public class WeaponManager : MonoBehaviour {
 
 	public void BuyMachineGune()
 	{
+		if (Player.Instance.GetComponent<Health> ().dead)
+			return;
+
 		if (GameMaster.Instance.score >= 2000 && !hasMachineGun) 
 		{
 			UIManager.Instance.ScoreChange (-2000);

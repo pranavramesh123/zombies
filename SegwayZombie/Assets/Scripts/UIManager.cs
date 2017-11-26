@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour {
 	public static UIManager Instance;
 	public Health playerHealth;
 
-	[SerializeField] GameObject player;
 	[SerializeField] Text scoreText;
 	[SerializeField] Text headShotText;
 	[SerializeField] Text scoreGainText;

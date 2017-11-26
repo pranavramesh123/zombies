@@ -21,14 +21,15 @@ public class Player : MonoBehaviour {
 			Destroy (this);
 	}
 
-	void Update()
-	{
-		HandleMoveInput ();
-	}
-
 	void FixedUpdate()
 	{
+		float horizonal = Input.GetAxisRaw ("Horizontal");
+		float vertical = Input.GetAxisRaw ("Vertical");
+		MoveDirection = new Vector3 (horizonal, 0f, vertical);
 		rb.velocity = MoveDirection.normalized * speed;
+
+		if (MousePosition.Instance != null && MousePosition.Instance.isValid)
+			LookDirection = MousePosition.Instance.mousePosition - transform.position;
 
 		LookDirection = new Vector3 (LookDirection.x, 0f, LookDirection.z);
 		rb.MoveRotation (Quaternion.Lerp(transform.rotation, Quaternion.LookRotation (LookDirection), 10f * Time.deltaTime));
@@ -36,18 +37,6 @@ public class Player : MonoBehaviour {
 		//Handling aim
 		WeaponRotation ();
 		aimPivot.transform.rotation = Quaternion.Lerp(aimPivot.transform.rotation, Quaternion.LookRotation (weaponRotation), 10f * Time.deltaTime);
-	}
-
-	void HandleMoveInput()
-	{
-		float horizonal = Input.GetAxisRaw ("Horizontal");
-		float vertical = Input.GetAxisRaw ("Vertical");
-
-		MoveDirection = new Vector3 (horizonal, 0f, vertical);
-
-		if (MousePosition.Instance != null && MousePosition.Instance.isValid)
-			LookDirection = MousePosition.Instance.mousePosition - transform.position;
-
 	}
 
 	void WeaponRotation()
