@@ -21,12 +21,13 @@ public class Player : MonoBehaviour {
 			Destroy (this);
 	}
 
+
 	void FixedUpdate()
 	{
 		float horizonal = Input.GetAxisRaw ("Horizontal");
 		float vertical = Input.GetAxisRaw ("Vertical");
 		MoveDirection = new Vector3 (horizonal, 0f, vertical);
-		rb.velocity = MoveDirection.normalized * speed;
+		rb.position += MoveDirection.normalized * speed * Time.deltaTime;
 
 		if (MousePosition.Instance != null && MousePosition.Instance.isValid)
 			LookDirection = MousePosition.Instance.mousePosition - transform.position;
